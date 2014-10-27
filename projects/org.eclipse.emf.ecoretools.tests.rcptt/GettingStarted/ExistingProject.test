@@ -1,0 +1,87 @@
+--- RCPTT testcase ---
+Format-Version: 1.0
+Contexts: _yJy34DAjEeSuCetOF8UKNw,_2cFzUDdREeSgJOnxPL2slA
+Element-Name: ExistingProject
+Element-Type: testcase
+Element-Version: 3.0
+External-Reference: 
+Id: _kisJADAjEeSuCetOF8UKNw
+Runtime-Version: 1.5.2.201408180747
+Save-Time: 9/8/14 2:16 PM
+Testcase-Type: ecl
+
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+get-view "Project Explorer" | get-tree | select "org.eclipse.emf.examples.library/model/extlibrary.ecore" 
+    | get-menu "Initialize Ecore Diagram ..." | click
+get-window "Create Representation File" | get-button Finish | click
+with [get-window "Create Representation Wizard"] {
+    get-tree | select "Design/Entities"
+    get-button "Next >" | click
+}
+with [get-window "Create Representation"] {
+    get-tree | select "platform:\\/resource\\/org.eclipse.emf.examples.library\\/model\\/extlibrary.ecore/extlibrary"
+    get-button Finish | click
+    get-window "New Representation" | get-button OK | click
+}
+get-editor "extlibrary class diagram" | get-diagram -index 1 | get-edit-part -name "extlibrary class diagram" 
+    | mouse-move 9 97 -height 335 -width 672
+with [get-view "Project Explorer" | get-tree] {
+    select "org.eclipse.emf.examples.library/model/extlibrary.aird/extlibrary.ecore - \\[platform:\\/resource\\/org.eclipse.emf.examples.library\\/model\\/extlibrary.ecore\\]/extlibrary/Book -> CirculatingItem"
+    get-item "org.eclipse.emf.examples.library/model/extlibrary.aird/extlibrary.ecore - \\[platform:\\/resource\\/org.eclipse.emf.examples.library\\/model\\/extlibrary.ecore\\]/extlibrary/Book -> CirculatingItem" 
+        | drag-start 22 11
+    get-item "org.eclipse.emf.examples.library/model/extlibrary.aird/extlibrary.ecore - \\[platform:\\/resource\\/org.eclipse.emf.examples.library\\/model\\/extlibrary.ecore\\]/extlibrary/Library -> Addressable" 
+        | drag-enter 105 2 -detail move
+    get-item "org.eclipse.emf.examples.library/model/extlibrary.aird/extlibrary.ecore - \\[platform:\\/resource\\/org.eclipse.emf.examples.library\\/model\\/extlibrary.ecore\\]/extlibrary/Library -> Addressable" 
+        | drag-exit
+}
+with [get-editor "extlibrary class diagram" | get-diagram -index 1 | get-edit-part -name "extlibrary class diagram"] {
+    drag-enter 5 92 -detail move
+    drag-over 159 136 -detail move
+    drag-exit
+    drag-accept 159 136 -detail move
+}
+get-view "Project Explorer" | get-tree | drag-set-data
+get-editor "extlibrary class diagram" | get-diagram -index 1 | get-edit-part -name "extlibrary class diagram" 
+    | drop 159 136 -detail move
+get-view "Project Explorer" | get-tree | drag-end -detail move
+get-editor "extlibrary class diagram" | get-diagram -index 1 | get-edit-part -name "extlibrary class diagram" 
+    | mouse-move 7 103 -height 335 -width 599
+get-editor "extlibrary class diagram" | get-diagram -index 1 | get-edit-part -name "extlibrary class diagram" 
+    | get-edit-part -name Book | get-edit-part -className DNodeListNameEditPart | get-property text | equals "" 
+    | verify-true
+get-view "Project Explorer" | get-tree | select "org.eclipse.emf.examples.library/model/extlibrary.ecore" 
+    | get-menu "Initialize Ecore Diagram ..." | click
+with [get-window "Create Representation Wizard"] {
+    get-tree | select "Design/Entities"
+    get-button "Next >" | click
+}
+with [get-window "Create Representation"] {
+    get-tree | select "platform:\\/resource\\/org.eclipse.emf.examples.library\\/model\\/extlibrary.ecore/extlibrary"
+    get-button Finish | click
+    with [get-window "New Representation"] {
+        get-editbox 
+            -after [get-label "Representation description: A graphical modeler for Ecore model similar to a UML class diagram.Representation name:"] 
+            | set-text "second diagram"
+        get-button OK | click
+    }
+}
+with [get-editor "second diagram"] {
+    get-diagram -index 1 | get-edit-part -name "second diagram" | mouse-move 598 123 -height 335 -width 672
+    with [get-palette | get-palette-entry Class] {
+        mouse-move 63 8 button1 -height 23 -width 112
+        mouse-press 63 8 button1 -height 23 -width 112
+        mouse-release 63 8 button1 524288 -height 23 -width 112
+    }
+    with [get-diagram -index 1 | get-edit-part -name "second diagram"] {
+        mouse-move 245 140 button1 -height 335 -width 672
+        mouse-press 245 140 button1 -height 335 -width 672
+        mouse-release 245 140 button1 524288 -height 335 -width 672
+    }
+   
+}
+get-editor "second diagram" | get-diagram -index 1 | get-edit-part -name "second diagram" | get-edit-part 
+    -name NewEClass15 | get-edit-part -className DNodeListNameEditPart | get-property text | equals "" | verify-true
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--

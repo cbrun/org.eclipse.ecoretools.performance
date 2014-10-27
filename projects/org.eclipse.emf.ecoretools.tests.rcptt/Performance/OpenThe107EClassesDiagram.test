@@ -1,0 +1,291 @@
+--- RCPTT testcase ---
+Format-Version: 1.0
+Contexts: _4qsmkDgaEeSvseXHxii3dg,_jJWh4DdSEeSgJOnxPL2slA,_DeNwYDdTEeSgJOnxPL2slA,_d9lMEDgMEeSvseXHxii3dg
+Element-Name: OpenThe107EClassesDiagram
+Element-Type: testcase
+Element-Version: 3.0
+External-Reference: 
+Id: _Zk3wkDd2EeStDcxfajht5g
+Runtime-Version: 1.5.2.201408180747
+Save-Time: 9/9/14 2:15 PM
+Testcase-Type: ecl
+
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+// close the outline view as it might have big impacts on the measures
+
+get-view Outline | close
+
+// prepare a dump of the plugin versions
+
+proc "dump-perfo-data" [val measure -input] {
+	with $measure {
+		format "%s : %s ms" [get name] [get duration] | write-lines -append true
+				-uri "file:/home/cedric/rcptt-perfo.txt"
+	}
+}
+
+str "********* Installation **************" | write-lines -uri "file:/home/ce" +
+		"dric/rcptt-perfo.txt"
+list-plugins | foreach [val item] {
+	if [$item | get id | matches ".*sirius.*"] {
+		$item | format "plugin : %s %s" [$item | get id] [$item | get version] |
+				write-lines -append -uri "file:/home/cedric/rcptt-perfo.txt"
+	}
+	if [$item | get id | matches ".*ecoretools.*"] {
+		$item | format "plugin : %s %s" [$item | get id] [$item | get version] |
+				write-lines -append -uri "file:/home/cedric/rcptt-perfo.txt"
+	}
+}
+
+str "********* Measures **************" | write-lines -append true
+		-uri "file:/home/cedric/rcptt-perfo.txt"
+
+measure-time "load the models" {
+	get-view "Project Explorer" | get-tree | select "reverse-sirius-modeling" |
+			double-click
+
+	get-view "Model Explorer" | get-tree | select "reverse-sirius-modeling/re" +
+			"verse.ecore/full-sirius-code"
+} | dump-perfo-data
+
+measure-time "select the Design viewpoint" {
+	// /// select the "Design" viewpoint
+	get-view "Model Explorer" | get-tree | select "reverse-sirius-modeling" |
+			get-menu "Viewpoints Selection" | click
+	with [get-window "Viewpoints Selection" | get-table] {
+		select [get-item "" -index 1]
+		get-cell 1 0 | check
+	}
+	get-window "Viewpoints Selection" | get-button OK | click
+} | dump-perfo-data
+measure-time "Open empty entities diagram" {
+	get-view "Model Explorer" | get-tree | select "reverse-sirius-modeling/re" +
+			"verse.ecore/full-sirius-code/full-sirius-code class diagram" |
+			double-click
+} | dump-perfo-data
+with [get-editor "full-sirius-code class diagram"] {
+	get-diagram -index 1 | get-edit-part
+			-name "full-sirius-code class diagram" | mouse-move 1258 56
+			-height 531 -width 1266
+	with [get-palette] {
+		with [get-palette-entry Add] {
+			mouse-move 55 4 button1 -height 23 -width 125
+			mouse-press 55 4 button1 -height 23 -width 125
+		}
+		get-palette-entry | mouse-hover "-387" 134 -height 552 -width 125
+		get-palette-entry Add | mouse-release 55 4 button1 524288 -height 23
+				-width 125
+	}
+	with [get-diagram -index 1 | get-edit-part -name "full-sirius-code class " +
+			"diagram"] {
+		mouse-move 725 160 button1 -height 531 -width 1266
+		mouse-press 725 160 button1 -height 531 -width 1266
+		mouse-release 725 160 button1 524288 -height 531 -width 1266
+	}
+}
+measure-time "Add elements in the diagram" {
+	with [get-window "Select element to add in diagram"] {
+		get-editbox -after [get-label "Enter prefix or pattern (? = any chara" +
+				"cter, * = any String):"] | set-text "Viewpoint*"
+		with [get-tree] {
+			expand-all
+			select -items ".*/.*/.*" -all true
+		}
+		get-button Finish | click
+	}
+} | dump-perfo-data
+measure-time "Arrange All" {
+	with [get-editor "full-sirius-code class diagram"] {
+		with [get-diagram -index 1] {
+			with [get-edit-part -name "full-sirius-code class diagram"] {
+				mouse-move 333 240 -height 4565 -width 3102
+				mouse-hover 333 240 -height 4565 -width 3102
+				mouse-move 329 240 button1 -height 4565 -width 3102
+				mouse-press 329 240 button1 -height 4565 -width 3102
+				mouse-release 329 240 button1 -height 4565 -width 3102
+			}
+		}
+		get-button "Arrange All" | click -arrow
+	}
+	get-menu "Arrange All" | click
+} | dump-perfo-data
+with [get-editor "full-sirius-code class diagram"] {
+	with [get-diagram -index 1] {
+		measure-time "Select All" {
+			with [get-editor "full-sirius-code class diagram"] {
+				with [get-diagram -index 1] {
+					with [get-edit-part
+							-name "full-sirius-code class diagram"] {
+						key-type "M1+a"
+					}
+				}
+			}
+		} | dump-perfo-data
+		measure-time "Hide All" {
+			with [get-editor "full-sirius-code class diagram"] {
+				with [get-diagram -index 1] {
+					with [get-edit-part
+							-name "full-sirius-code class diagram"] {
+						key-type "M1+h"
+					}
+				}
+			}
+		} | dump-perfo-data
+		measure-time "Undo Hide All" {
+			with [get-editor "full-sirius-code class diagram"] {
+				with [get-diagram -index 1] {
+					with [get-edit-part
+							-name "full-sirius-code class diagram"] {
+						key-type "M1+z"
+					}
+				}
+			}
+		} | dump-perfo-data
+	}
+
+	with [get-palette] {
+		with [get-palette-entry Class] {
+			mouse-press 28 13 button1 -height 23 -width 125
+			mouse-release 28 13 button1 524288 -height 23 -width 125
+		}
+	}
+	measure-time "Create an EClass" {
+		with [get-diagram -index 1 | get-edit-part -name "full-sirius-code cl" +
+				"ass diagram"] {
+			mouse-press 497 234 button1 -height 3464 -width 14635
+			mouse-release 497 234 button1 524288 -height 3464 -width 14635
+		}
+	} | dump-perfo-data
+
+	with [get-diagram -index 1 | get-edit-part -name "full-sirius-code class " +
+			"diagram"] {
+		mouse-press 295 178 button1 -height 3464 -width 14635
+		mouse-release 295 178 button1 524288 -height 3464 -width 14635
+		get-edit-part -name ViewpointComparator | mouse-move 126 2 -height 100
+				-width 300
+	}
+	measure-time "Force diagram refresh" {
+		get-button "Refresh diagram" | click
+	} | dump-perfo-data
+
+	with [get-diagram -index 1] {
+		with [get-edit-part -name "full-sirius-code class diagram" |
+				get-edit-part -name ViewpointComparator | get-edit-part
+				-className DNodeListViewNodeListCompartment2EditPart] {
+			// mouse-move 261 29 button1 -height 71 -width 296
+			mouse-press 261 29 button1 -height 71 -width 296
+			// mouse-hover 261 29 -height 71 -width 296
+			mouse-release 261 29 button1 524288 -height 71 -width 296
+		}
+		measure-time "Delete an EClass" {
+			with [get-editor ] {
+				with [get-diagram -index 1] {
+					key-type Del
+				}
+			}
+		}
+		key-type "M1+z"
+	}
+}
+/* get-diagram -index 1 | get-edit-part -name "full-sirius-code class diagram" | mouse-move 163 24 -height 3464 
+        -width 14635
+    get-button Layers | click -arrow
+get-menu Documentation | click
+with [get-editor "full-sirius-code class diagram"] {
+    get-diagram -index 1 | get-edit-part -name "full-sirius-code class diagram" | mouse-move 182 25 -height 3464 
+        -width 14635
+    get-button Layers | click -arrow
+}
+get-menu Constraint | click
+with [get-editor "full-sirius-code class diagram"] {
+    get-diagram -index 1 | get-edit-part -name "full-sirius-code class diagram" | mouse-move 176 24 -height 3464 
+        -width 14635
+    get-button Layers | click -arrow
+}
+get-menu "Related EClasses" | click
+with [get-editor "full-sirius-code class diagram"] {
+    get-diagram -index 1 | get-edit-part -name "full-sirius-code class diagram" | mouse-move 9413 66 -height 3757 
+        -width 136649
+    get-button "Refresh diagram" | click
+    with [get-diagram -index 1 | get-edit-part -name "full-sirius-code class diagram"] {
+        mouse-move 9827 94 -height 3757 -width 136649
+        get-edit-part -name ViewpointSelector | mouse-move 7 24 -height 100 -width 120
+    }
+} */
+
+// save the session
+
+measure-time "Save project with semantic and representation changes" {
+	get-menu "File/Save" | click
+} | dump-perfo-data
+
+// //// close the diagram editor
+measure-time "Close the Diagram Editor" {
+	get-menu "File/Close" | click
+} | dump-perfo-data
+// /// close the project
+measure-time "Close the project" {
+	with [get-view "Model Explorer" | get-tree] {
+		select "reverse-sirius-modeling" | get-menu "Close Project" | click
+	}
+} | dump-perfo-data
+measure-time "Reopen the project" {
+	with [get-view "Model Explorer" | get-tree] {
+		select "reverse-sirius-modeling" | get-menu "Open Project" | click
+	}
+} | dump-perfo-data
+
+/* enable the "Review" viewpoint */
+measure-time "Enable the Review Viewpoint" {
+	with [get-view "Model Explorer" | get-tree] {
+		select "reverse-sirius-modeling" | get-menu "Viewpoints Selection" |
+				click
+	}
+	with [get-window "Viewpoints Selection" | get-table] {
+		select [get-item "" -index 2]
+		get-cell 2 0 | check
+	}
+	get-window "Viewpoints Selection" | get-button OK | click
+} | dump-perfo-data
+/* Create a "classes" table */
+measure-time "Create the classes table" {
+	with [get-view "Model Explorer" | get-tree] {
+		select "reverse-sirius-modeling" | double-click
+		select "reverse-sirius-modeling/reverse.ecore/full-sirius-code" |
+				get-menu "New Representation/full-sirius-code class table" |
+				click
+	}
+	get-window "New Representation" | get-button OK | click
+} | dump-perfo-data
+/* force a refresh */
+with [get-editor | get-tree] {
+	get-item "org.eclipse.sirius.business.api.action" | expand | click
+}
+measure-time "Force a table refresh" {
+	get-button "Force a refresh of the table" | click
+} | dump-perfo-data
+
+/* Change model element usint the properties view */
+measure-time "Change model in the properties views" {
+	with [get-editor "full-sirius-code class table" | get-tree] {
+		get-item "org.eclipse.sirius.business.api.action/PrintInterpreterVari" +
+				"ablesAction -> AbstractExternalJavaAction" | expand
+		get-cell 4 0 | click
+	}
+	with [get-view Properties | get-tree] {
+		select "TITLE_PARAM : EString/Changeable" | activate-cell-edit -column 1
+		get-combo | select true
+		apply-cell-edit
+	}
+} | dump-perfo-data
+measure-time "Save project after table creation" {
+	get-menu "File/Save" | click
+} | dump-perfo-data
+measure-time "Close Table" {
+	/* close the table */
+	get-menu "File/Close" | click
+} | dump-perfo-data
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--

@@ -1,0 +1,71 @@
+--- RCPTT testcase ---
+Format-Version: 1.0
+Contexts: _5vnEcDdPEeSgJOnxPL2slA,_jJWh4DdSEeSgJOnxPL2slA,_DeNwYDdTEeSgJOnxPL2slA
+Element-Name: ItalicWhenAbstract
+Element-Type: testcase
+Element-Version: 3.0
+External-Reference: 
+Id: _BcMVoDdQEeSgJOnxPL2slA
+Runtime-Version: 1.5.2.201408180747
+Save-Time: 9/8/14 3:56 PM
+Tags: EClass
+Testcase-Type: ecl
+
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+get-view "Model Explorer" | get-tree | select "org.eclipse.emf.ecoretools.design.tests.nonreg/all.ecore/ecoretools" 
+    | get-menu "New Representation/ecoretools class diagram" | click
+with [get-window "New Representation"] {
+    get-editbox 
+        -after [get-label "Representation description: A graphical modeler for Ecore model similar to a UML class diagram.Representation name:"] 
+        | set-text italic
+    get-button OK | click
+}
+with [get-editor italic] {
+    get-diagram -index 1 | get-edit-part -name italic | mouse-move 572 317 -height 337 -width 599
+    with [get-palette] {     
+        with [get-palette-entry Add] {
+            mouse-move 38 2 button1 -height 23 -width 112
+            mouse-press 38 2 button1 -height 23 -width 112
+            mouse-release 38 2 button1 524288 -height 23 -width 112
+        }
+    }
+    with [get-diagram -index 1 | get-edit-part -name italic] {
+        mouse-move 304 252 button1 -height 337 -width 599
+        mouse-press 304 252 button1 -height 337 -width 599
+        mouse-release 304 252 button1 524288 -height 337 -width 599
+    }
+}
+with [get-window "Select element to add in diagram"] {
+    get-editbox -after [get-label "Enter prefix or pattern (? = any character, * = any String):"] | set-text abs
+    get-tree | select "ecoretools/AbstractClass"
+    get-button Finish | click
+}
+with [get-editor italic | get-diagram -index 1 | get-edit-part -name italic | get-edit-part -name AbstractClass] {
+    get-edit-part -className DNodeListNameEditPart 
+        | get-property "getFigure().getFont().getFontData().FontData[0].getStyle()" | equals 2 | verify-true
+    get-figure "0/0" | get-property foregroundColor | equals "#EF2929" | verify-true
+}
+get-editor italic | get-diagram -index 1 | get-edit-part -name italic | mouse-move 251 525 -height 539 -width 1286
+get-view Properties | get-property-tab Model | click
+with [get-editor italic | get-diagram -index 1 | get-edit-part -name italic] {
+    mouse-move 164 268 -height 539 -width 1286
+    with [get-edit-part -name AbstractClass] {
+        mouse-move 147 1 button1 -height 100 -width 159
+        mouse-press 147 1 button1 -height 100 -width 159
+        mouse-release 147 1 button1 524288 -height 100 -width 159
+        get-handle MoveHandle | mouse-hover 135 99 -height 100 -width 159
+    }
+    mouse-move 191 538 -height 539 -width 1286
+    get-edit-part -name AbstractClass | activate-direct-edit
+}
+get-view Properties | get-section Properties | get-button Abstract | uncheck
+with [get-editor italic | get-diagram -index 1 | get-edit-part -name italic | get-edit-part -name AbstractClass] {
+    get-edit-part -className DNodeListNameEditPart 
+        | get-property "getFigure().getFont().getFontData().FontData[0].style" | equals 0 | verify-true
+    get-figure "0/0" | get-property foregroundColor | equals "#EF2929" | verify-true
+}
+
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--
