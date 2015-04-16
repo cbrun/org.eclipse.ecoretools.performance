@@ -1,0 +1,47 @@
+<project>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.eclipse.ecoretools</groupId>
+  <artifactId>rcpttTests</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>rcpttTest</packaging>
+ 
+  
+  <properties>
+    <ci4rcptt-maven-version>1.5.6-SNAPSHOT</ci4rcptt-maven-version>
+  </properties> 
+  
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>com.xored.ci4rcptt</groupId>
+        <artifactId>ci4rcptt-maven-plugin</artifactId>
+        <version>${ci4rcptt-maven-version}</version>
+        <extensions>true</extensions>
+        <configuration>
+          <aut>
+	    <!--
+	    <explicit>/home/cedric/bin/eclipse/4.4.2final/20150219-0600_eclipse-modeling-luna-SR2-linux.gtk.x86_64.tar.gz</explicit>
+	    -->
+	    <explicit>https://hudson.eclipse.org/packaging/job/luna.epp-tycho-build/lastSuccessfulBuild/artifact/org.eclipse.epp.packages/archive/20150219-0600_eclipse-modeling-luna-SR2-[platform].tar.gz</explicit>           
+          </aut>	  
+	  <runner>
+	    <!-- version of RCPTT Runner -->
+	    <explicit>http://download.eclipse.org/rcptt/nightly/1.5.6/latest/runner/rcptt.runner-incubation-1.5.6-nightly.zip</explicit>
+	  </runner>
+	  <suites>
+	    <suite>All</suite>
+	  </suites>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+ 
+  <pluginRepositories>
+    <pluginRepository>
+      <id>xored</id>
+      <name>Xored Maven repository</name>
+      <url>http://maven.xored.com/nexus/content/repositories/ci4rcptt-snapshots/</url>
+    </pluginRepository>
+  </pluginRepositories> 
+  
+</project>
