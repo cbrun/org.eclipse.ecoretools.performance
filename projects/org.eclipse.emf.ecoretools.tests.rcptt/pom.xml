@@ -10,8 +10,10 @@
         <ci4rcptt-maven-version>1.5.6-SNAPSHOT</ci4rcptt-maven-version>
         <!--
         <base-aut>http://mirror.ibcp.fr/pub/eclipse//technology/epp/downloads/release/luna/SR2/eclipse-standard-luna-SR2-linux-gtk-x86_64.tar.gz</base-aut>
+        <base-aut>/home/cedric/bin/eclipse/4.4.2final/20150219-0600_eclipse-modeling-luna-SR2-linux.gtk.x86_64.tar.gz</base-aut>
+        <base-aut>/home/cedric/bin/eclipse/4.5/4.5.M7/prewarmup/20150505-0312_eclipse-modeling-mars-M6-linux.gtk.x86_64.tar.gz</base-aut>
         -->
-        <base-aut>https://hudson.eclipse.org/packaging/job/luna.epp-tycho-build/lastSuccessfulBuild/artifact/org.eclipse.epp.packages/archive/20150219-0600_eclipse-modeling-luna-SR2-linux.gtk.x86_64.tar.gz</base-aut>
+        <base-aut>https://hudson.eclipse.org/packaging/job/luna.epp-tycho-build/lastSuccessfulBuild/artifact/org.eclipse.epp.packages/archive/20150219-0600_eclipse-standard-luna-SR2-linux.gtk.x86_64.tar.gz</base-aut>
     </properties> 
 
     <build>
@@ -27,12 +29,17 @@
         <explicit>/home/cedric/bin/eclipse/4.4.2final/20150219-0600_eclipse-modeling-luna-SR2-linux.gtk.x86_64.tar.gz</explicit>
         -->	    
         <explicit>${base-aut}</explicit>           
-            <!--
         <injections>
             <injection>
                 <site>https://hudson.eclipse.org/acceleo/job/acceleo-master/lastSuccessfulBuild/artifact/releng/org.eclipse.acceleo-updatesite/target/repository</site>
                 <features>
                     <feature>org.eclipse.acceleo.query.feature.group</feature>
+                </features>      
+            </injection>
+            <injection>
+                <site>http://download.eclipse.org/modeling/emft/eef/updates/milestones/1.5/S201412231052/</site>
+                <features>
+                    <feature>org.eclipse.emf.eef.runtime-feature.feature.group</feature>
                 </features>      
             </injection>
             <injection>
@@ -43,19 +50,12 @@
                 </features>      
             </injection>
             <injection>
-                <site>http://download.eclipse.org/modeling/emft/eef/updates/milestones/1.5/S201412231052/</site>
-                <features>
-                    <feature>org.eclipse.emf.eef.runtime-feature.feature.group</feature>
-                </features>      
-            </injection>
-            <injection>
                 <site>http://download.eclipse.org/ecoretools/updates/nightly/3.0.x/luna</site>
                 <features>
                     <feature>org.eclipse.emf.ecoretools.sdk.feature.group</feature>
                 </features>      
             </injection>
         </injections>
-            -->
     </aut>	  
     <runner>
         <!-- version of RCPTT Runner -->
