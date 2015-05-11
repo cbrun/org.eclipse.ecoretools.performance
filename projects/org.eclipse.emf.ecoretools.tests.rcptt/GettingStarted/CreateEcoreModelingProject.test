@@ -1,13 +1,13 @@
 --- RCPTT testcase ---
 Format-Version: 1.0
-Contexts: _2cFzUDdREeSgJOnxPL2slA,_lw8nsDAqEeScWdoj2Bo3WA
+Contexts: _lw8nsDAqEeScWdoj2Bo3WA,_rZIScPf_EeS2rdozIHdfoA
 Element-Name: CreateEcoreModelingProject
 Element-Type: testcase
 Element-Version: 3.0
 External-Reference: 
 Id: _h-6ggDAqEeScWdoj2Bo3WA
 Runtime-Version: 2.0.0.201504040819
-Save-Time: 5/11/15 6:55 PM
+Save-Time: 5/11/15 7:04 PM
 Testcase-Type: ecl
 
 ------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
