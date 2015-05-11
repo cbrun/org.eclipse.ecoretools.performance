@@ -8,10 +8,10 @@
 
     <properties>
         <ci4rcptt-maven-version>1.5.6-SNAPSHOT</ci4rcptt-maven-version>
-        <base-aut>http://mirror.ibcp.fr/pub/eclipse//technology/epp/downloads/release/luna/SR2/eclipse-standard-luna-SR2-linux-gtk-x86_64.tar.gz</base-aut>
         <!--
-        <base-aut>https://hudson.eclipse.org/packaging/job/luna.epp-tycho-build/lastSuccessfulBuild/artifact/org.eclipse.epp.packages/archive/20150219-0600_eclipse-standard-luna-SR2-linux.gtk.x86_64.tar.gz</base-aut>
+        <base-aut>http://mirror.ibcp.fr/pub/eclipse//technology/epp/downloads/release/luna/SR2/eclipse-standard-luna-SR2-linux-gtk-x86_64.tar.gz</base-aut>
         -->
+        <base-aut>https://hudson.eclipse.org/packaging/job/luna.epp-tycho-build/lastSuccessfulBuild/artifact/org.eclipse.epp.packages/archive/20150219-0600_eclipse-modeling-luna-SR2-linux.gtk.x86_64.tar.gz</base-aut>
     </properties> 
 
     <build>
