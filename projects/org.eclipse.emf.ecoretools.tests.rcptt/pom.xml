@@ -47,13 +47,13 @@
                     <feature>org.eclipse.sirius.runtime.aql</feature>
                 </features>      
             </injection>
-            -->
             <injection>
                 <site>http://download.eclipse.org/modeling/emft/eef/updates/milestones/1.5/S201412231052/</site>
                 <features>
                     <feature>org.eclipse.emf.eef.runtime-feature</feature>
                 </features>      
             </injection>
+            -->
         </injections>
     </aut>	  
     <runner>
