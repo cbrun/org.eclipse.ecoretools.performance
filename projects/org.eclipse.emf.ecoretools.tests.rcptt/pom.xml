@@ -43,7 +43,7 @@
             <injection>
                 <site>http://download.eclipse.org/sirius/updates/nightly/3.0.x/luna</site>
                 <features>
-                    <feature>org.eclipse.sirius.runtime.ide.ui</feature>
+                    <feature>org.eclipse.sirius.runtime.aql</feature>
                 </features>      
             </injection>
             <injection>
