@@ -1,13 +1,13 @@
 --- RCPTT testcase ---
 Format-Version: 1.0
-Contexts: _lw8nsDAqEeScWdoj2Bo3WA,_2cFzUDdREeSgJOnxPL2slA,_GnzM8DdSEeSgJOnxPL2slA
+Contexts: _2cFzUDdREeSgJOnxPL2slA,_lw8nsDAqEeScWdoj2Bo3WA
 Element-Name: CreateEcoreModelingProject
 Element-Type: testcase
 Element-Version: 3.0
 External-Reference: 
 Id: _h-6ggDAqEeScWdoj2Bo3WA
-Runtime-Version: 1.5.2.201408180747
-Save-Time: 9/8/14 2:18 PM
+Runtime-Version: 2.0.0.201504040819
+Save-Time: 5/11/15 6:55 PM
 Testcase-Type: ecl
 
 ------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
@@ -28,9 +28,9 @@ with [get-window "New Ecore Modeling Project"] {
     }
     get-button Finish | click
 }
-get-window "Open Associated Perspective?" | get-button No | click
-with [get-editor "project class diagram"] {
-    get-diagram -index 1 | get-edit-part -name "project class diagram" | mouse-move 588 227 -height 335 -width 672
+//get-window "Open Associated Perspective?" | get-button No | click
+with [get-editor "project"] {
+    get-diagram -index 1 | get-edit-part -name "project" | mouse-move 588 227 -height 335 -width 672
     with [get-palette] {
         get-palette-entry Literal | mouse-move 103 14 -height 23 -width 112
         get-palette-entry Datatype | mouse-move 61 0 -height 23 -width 112
@@ -41,16 +41,16 @@ with [get-editor "project class diagram"] {
             mouse-hover 52 12 -height 23 -width 112
         }
     }
-    with [get-diagram -index 1 | get-edit-part -name "project class diagram"] {
+    with [get-diagram -index 1 | get-edit-part -name "project"] {
         mouse-move 262 127 button1 -height 335 -width 672
         mouse-press 262 127 button1 -height 335 -width 672
         mouse-release 262 127 button1 524288 -height 335 -width 672
     }
-    with [get-diagram -index 1 | get-edit-part -name "project class diagram"] {
+    with [get-diagram -index 1 | get-edit-part -name "project"] {
         get-edit-part -name NewEClass1 | get-handle ResizeHandle -index 6 | mouse-hover 4 4 -height 7 -width 7
         mouse-move 30 301 -height 335 -width 599
     }
 }
-get-editor "project class diagram" | get-diagram -index 1 | get-edit-part -name "project class diagram" | get-edit-part 
+get-editor "project" | get-diagram -index 1 | get-edit-part -name "project" | get-edit-part 
     -name NewEClass1 | get-edit-part -className DNodeListNameEditPart | get-property text | equals "" | verify-true
 ------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--
