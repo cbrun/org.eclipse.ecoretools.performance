@@ -27,6 +27,7 @@
         <explicit>/home/cedric/bin/eclipse/4.4.2final/20150219-0600_eclipse-modeling-luna-SR2-linux.gtk.x86_64.tar.gz</explicit>
         -->	    
         <explicit>${base-aut}</explicit>           
+            <!--
         <injections>
             <injection>
                 <site>https://hudson.eclipse.org/acceleo/job/acceleo-master/lastSuccessfulBuild/artifact/releng/org.eclipse.acceleo-updatesite/target/repository</site>
@@ -54,6 +55,7 @@
                 </features>      
             </injection>
         </injections>
+            -->
     </aut>	  
     <runner>
         <!-- version of RCPTT Runner -->
