@@ -40,7 +40,6 @@
                     <feature>org.eclipse.acceleo.query</feature>
                 </features>      
             </injection>
-            <!--
             <injection>
                 <site>http://download.eclipse.org/sirius/updates/nightly/3.0.x/luna</site>
                 <features>
@@ -53,7 +52,6 @@
                     <feature>org.eclipse.emf.eef.runtime-feature</feature>
                 </features>      
             </injection>
-            -->
         </injections>
     </aut>	  
     <runner>
