@@ -1,0 +1,49 @@
+--- RCPTT testcase ---
+Format-Version: 1.0
+Contexts: _lw8nsDAqEeScWdoj2Bo3WA,_2cFzUDdREeSgJOnxPL2slA,_DeNwYDdTEeSgJOnxPL2slA
+Element-Name: 3.0
+Element-Type: testcase
+Element-Version: 3.0
+External-Reference: 
+Id: _-k1EkPf6EeS2rdozIHdfoA
+Runtime-Version: 2.0.0.201504040819
+Save-Time: 5/11/15 6:33 PM
+Testcase-Type: ecl
+
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+get-view "Project Explorer" | get-tree | get-menu "New/Other..." | click
+with [get-window New] {
+    get-editbox -after [get-label "Wizards:"] | set-text ecore
+    get-tree | select "Eclipse Modeling Framework/Ecore Modeling Project"
+    get-button "Next >" | click
+}
+with [get-window "New Ecore Modeling Project"] {
+    get-editbox -after [get-label "Project name:"] | set-text test
+    with [get-button "Next >"] {
+        click
+        click
+    }
+    get-button Finish | click
+}
+get-window "Open Associated Perspective?" | get-button Yes | click
+with [get-editor test] {
+    get-diagram -index 1 | get-edit-part -name test | mouse-move 606 141 -height 334 -width 640
+    with [get-palette | get-palette-entry Class] {
+        mouse-move 50 11 button1 -height 23 -width 112
+        mouse-press 50 11 button1 -height 23 -width 112
+        mouse-release 50 11 button1 524288 -height 23 -width 112
+        mouse-hover 50 11 -height 23 -width 112
+    }
+    with [get-diagram -index 1 | get-edit-part -name test] {
+        mouse-move 257 170 button1 -height 334 -width 640
+        mouse-press 257 170 button1 -height 334 -width 640
+        mouse-release 257 170 button1 524288 -height 334 -width 640
+    }
+    get-diagram -index 1 | get-edit-part -name test | mouse-move 531 506 -height 334 -width 611
+}
+get-view Properties | get-section Properties | get-editbox -after [get-label "Name:"] | get-property text 
+    | equals NewEClass1 | verify-true
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--

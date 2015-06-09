@@ -1,0 +1,62 @@
+--- RCPTT testcase ---
+Format-Version: 1.0
+Contexts: _lw8nsDAqEeScWdoj2Bo3WA
+Element-Name: Convert
+Element-Type: testcase
+Element-Version: 3.0
+External-Reference: 
+Id: _QGKicPf9EeS2rdozIHdfoA
+Runtime-Version: 2.0.0.201504040819
+Save-Time: 5/11/15 6:49 PM
+Testcase-Type: ecl
+
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+
+get-view "Model Explorer" | get-tree | get-menu "New/Example..." | click
+with [get-window "New Example"] {
+    get-tree | select "Eclipse Modeling Framework/Extended Library Model Example"
+    get-button "Next >" | click
+    get-button Finish | click
+}
+with [get-view "Model Explorer" | get-tree] {
+    select "org.eclipse.emf.examples.library" | get-menu "Configure/Convert to Modeling Project" | click
+    select "org.eclipse.emf.examples.library" | double-click
+    select "org.eclipse.emf.examples.library" | get-menu "Viewpoints Selection" | click
+}
+with [get-window "Viewpoints Selection"] {
+    with [get-table] {
+        select Archetype | get-item Design | check
+        select Design
+    }
+    get-button OK | click
+}
+get-view "Model Explorer" | get-tree | select "org.eclipse.emf.examples.library/model/extlibrary.ecore/extlibrary" 
+    | get-menu "New Representation/extlibrary class diagram" | click
+get-window "New Representation" | get-button OK | click
+with [get-editor "extlibrary class diagram"] {
+    with [get-diagram -index 1 | get-edit-part -name "extlibrary class diagram"] {
+        mouse-move 374 90 -height 289 -width 640
+        with [get-edit-part -name "" | get-edit-part -className WorkspaceImageEditPart] {
+            mouse-move 462 23 button1 -height 85 -width 640
+            mouse-press 462 23 button1 -height 85 -width 640
+            mouse-release 462 23 button1 524288 -height 85 -width 640
+            mouse-press 462 19 button1 -height 85 -width 640
+            mouse-double-click 462 19 button1 -height 85 -width 640
+        }
+    }
+    with [get-diagram -index 1 | get-edit-part -name "extlibrary class diagram"] {
+        mouse-hover 420 243 -height 293 -width 647
+        mouse-release 466 23 button1 524288 -height 293 -width 647
+        mouse-move 420 243 -height 293 -width 647
+        mouse-hover 479 288 -height 338 -width 674
+        mouse-move 284 249 -height 820 -width 1635
+        mouse-hover 284 249 -height 820 -width 1635
+        mouse-move 400 245 -height 820 -width 1635
+        mouse-hover 400 245 -height 820 -width 1635
+        mouse-move 41 118 -height 820 -width 1635
+    }
+}
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--
