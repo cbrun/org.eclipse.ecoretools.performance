@@ -42,7 +42,7 @@
     </aut>	  
     <runner>
         <!-- version of RCPTT Runner -->
-        <explicit>http://download.eclipse.org/rcptt/nightly/2.0.0/latest/runner/rcptt.runner-incubation-2.0.0-nightly.zip</explicit>
+        <explicit>http://download.eclipse.org/rcptt/release/2.0.0/runner/rcptt.runner-2.0.0.zip</explicit>
         <!--
         <explicit>/home/cedric/bin/rcptt/rcptt.runner-incubation-2.0.0-nightly.zip</explicit>
         -->
